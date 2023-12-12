@@ -47,3 +47,10 @@ label {
     
 }
 
+.valid {
+    box-shadow: 0 0 2px 2px rgb(0, 190, 0);
+}
+
+.invalid {
+    box-shadow: 0 0 2px 2px red;
+}

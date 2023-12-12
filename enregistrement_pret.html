@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="prets.css">
+    <link rel="stylesheet" href="./CSS/prets.css">
     <title>Enregistrement des prêts</title>
 </head>
 <body>
@@ -12,10 +12,10 @@
         <h1>Enregistrer un prêt</h1>
         <form action="#" method="get">
             <label for="idAdherent">Numéro de l'adhérent</label>
-            <input type="text" name="numAdherent" id="idAdherent">
+            <input type="text" name="numAdherent" id="idAdherent" required="required" placeholder="Exemple : 1">
             <br><br>
             <label for="idCodeExemplaire">Code exemplaire</label>
-            <input type="text" name="codeExemplaire" id="idCodeExemplaire">
+            <input type="text" name="codeExemplaire" id="idCodeExemplaire" required="required" placeholder="Exemple : C1">
             <br>
             <div class="btnPret">
                 <input type="submit" value="Valider" id="btnPret">
@@ -23,6 +23,7 @@
             </div>
         </form>
     </div>
-    <script src="prets.js"></script>
+    <script src="./Javascript/prets.js"></script>
+    <script src="./Javascript/controle_champ_prets.js"></script>
 </body>
 </html>

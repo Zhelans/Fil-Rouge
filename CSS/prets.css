@@ -1,0 +1,56 @@
+#formPret {
+    text-align: center;
+    background-color: whitesmoke;
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+label {
+    display: inline-block;
+    width: 20%;
+    margin-top: 50px;
+}
+
+[type="text"] {
+    width: 250px;
+}
+
+[type="submit"] {
+    margin-right: 30px;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px 50px;
+
+}
+
+[type="reset"] {
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px 50px;
+}
+
+[type="submit"]:hover,[type="reset"]:hover {
+    box-shadow: 0px 1px black;
+    transform: scale(1.1);
+    transition-timing-function: ease-in-out;
+}
+
+.btnPret {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 100px;
+    margin-right: 50px;
+    padding-bottom: 30px;
+    
+}
+
+.valid {
+    box-shadow: 0 0 2px 2px rgb(0, 190, 0);
+}
+
+.invalid {
+    box-shadow: 0 0 2px 2px red;
+}

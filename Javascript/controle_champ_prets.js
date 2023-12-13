@@ -1,6 +1,6 @@
 var adhReg = /^[0-9]{1,}$/
 
-var codeExpReg = /^[A-Z][0-9]{1,}$/
+var codeExpReg = /^[C][0-9]{1,}$/
 
 var numAdh = document.getElementById('idAdherent');
 

@@ -72,6 +72,17 @@ label {
 }
 
 #table {
+    width: 100%;
     margin-top: 30px;
-    align-items: center;
+  }
+
+#table th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#table th {
+    background-color: #4CAF50;
+    color: white;
 }

@@ -1,9 +1,13 @@
+/* Mise en forme de la page enregistrement des prêts */
+
 #formPret {
     text-align: center;
     background-color: whitesmoke;
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
+    margin-top: 100px;
+    padding-top: 30px;
 }
 
 label {
@@ -53,4 +57,21 @@ label {
 
 .invalid {
     box-shadow: 0 0 2px 2px red;
+}
+
+/* Mise en forme de la page liste des prêts */
+
+#listePret {
+    text-align: center;
+    background-color: whitesmoke;
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 100px;
+    padding-top: 30px;
+}
+
+#table {
+    margin-top: 30px;
+    
 }

@@ -7,6 +7,7 @@ var tPrenom = [];
 
 // Utilisez forEach pour itérer sur les entrées de la map
 adherents.forEach(function (value) {
+    
     tNom.push(value.nom);
     tPrenom.push(value.prenom);
 });

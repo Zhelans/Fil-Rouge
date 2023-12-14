@@ -3,6 +3,9 @@ var listeAdherents = document.getElementById("liste");
 
 window.onload = affichageListeAdherents;
 
+
+
+
 function affichageListeAdherents() {
     for (let valeur of adherents.values()) {
         listeAdherents.innerHTML +='<tr>'+
@@ -31,7 +34,13 @@ function adherentsNumero(i) {
 }
 
 function adherentsCotisation(i) {
-    return i.dateCotisation;
+    let dateCotisation = new Date(i.dateCotisation);
+    if (dateCotisation > dateAnDernier()) {
+        return "Cotise";
+    } else {
+        return " Ne cotise pas";
+    }
+
 }
 
 function adherentsPret(i) {
@@ -48,4 +57,12 @@ function adherentsAmende(i) {
     } else {
         return i.amende;
     }
+}
+
+function dateAnDernier() {
+    let aujourdhui = new Date();
+    let anDernier = new Date();
+    anDernier.setFullYear(aujourdhui.getFullYear() - 1);
+
+    return anDernier;
 }

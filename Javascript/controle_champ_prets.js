@@ -8,6 +8,10 @@ var codeExp = document.getElementById('idCodeExemplaire');
 
 var submitBtn = document.getElementById('btnPret');
 
+var form = document.getElementById('form');
+
+var msgAdh = document.getElementById('msgNumAdh');
+
 numAdh.addEventListener('keyup', controleNumAdh);
 
 codeExp.addEventListener('keyup', controleCodeExp);
@@ -31,3 +35,35 @@ function controleCodeExp(e) {
         e.preventDefault();
     }
 }
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let numeroAdh = document.getElementById('idAdherent').value;
+    let codeExemplaire = document.getElementById('idCodeExemplaire').value;
+
+      // Vérifiez si le numéro d'adhérent existe dans la Map des adhérents
+      if (adherents.has(numeroAdh)) {
+        // Enregistrez le prêt dans la Map des prêts
+        let pretId = generateUniqueId(); // Fonction  pour générer une clé ID
+        prets.set(pretId, { numeroAdh, codeExemplaire});
+
+        // Réinitialisez le formulaire
+        numAdh.value = '';
+        codeExp.value = '';
+
+        alert('Prêt enregistré avec succès! ID du prêt : ' + pretId);
+      } else {
+        alert('Numéro d\'adhérent non trouvé. Veuillez vérifier le numéro et réessayer.');
+      }
+    });
+    
+
+    function generateUniqueId() {
+      let id = 1;
+
+      while (prets.has(id)) {
+        id++
+      }
+      return id;
+    }

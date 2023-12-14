@@ -1,35 +1,33 @@
 var liste = document.getElementById('liste');
 
-var table = document.getElementById('table');
-
-var tNom = [];
-var tPrenom = [];
-
-// Utilisez forEach pour itérer sur les entrées de la map
-adherents.forEach(function (value) {
+function afficherListePrets() {
     
-    tNom.push(value.nom);
-    tPrenom.push(value.prenom);
-});
+    liste.innerHTML = ''; // Efface le contenu actuel de la table
 
-function ajouterAuTableau(donnees,nom, prenom) {
+    // Parcourt la Map des prêts
+    prets.forEach(function (pret, pretId) {
+      let row = liste.insertRow();
+      let cellId = row.insertCell(0);
+      let cellCodeExemplaire = row.insertCell(1);
+      let cellNumeroAdherent = row.insertCell(2);
+      let cellNom = row.insertCell(3);
+      let cellPrenom = row.insertCell(4);
 
-    donnees.forEach(function (element, i) {
+      cellId.innerHTML = pretId;
+      cellCodeExemplaire.innerHTML = pret.codeExemplaire;
+      cellNumeroAdherent.innerHTML = pret.numeroAdherent;
 
-        var row = liste.insertRow();
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = element.idPret;
-        cell2.innerHTML = element.codeExp;
-        cell3.innerHTML = element.numeroAdh;
-        cell4.innerHTML = nom[i-1];
-        cell5.innerHTML = prenom[i-1];
+      // Ajoutez le nom et le prénom de l'adhérent si disponible
+      if (adherents.has(pret.numeroAdherent)) {
+        let adherent = adherents.get(pret.numeroAdherent);
+        cellNom.innerHTML = adherent.nom;
+        cellPrenom.innerHTML = adherent.prenom;
+      } else {
+        cellNom.innerHTML = 'N/A';
+        cellPrenom.innerHTML = 'N/A';
+      }
     });
-}
+  }
 
-// Ajouter les données des deux tableaux au tableau HTML
-ajouterAuTableau(prets,tNom,tPrenom);
+  // Appel de la fonction pour afficher la liste des prêts au chargement de la page
+  afficherListePrets();

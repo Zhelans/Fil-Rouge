@@ -1,9 +1,16 @@
 var liste = document.getElementById('liste');
 
+
+    let pretsStored = localStorage.getItem('prets');
+    if (pretsStored) {
+        prets = new Map(JSON.parse(pretsStored));
+    } else {
+        prets = new Map();
+    }
+
+
 function afficherListePrets() {
     
-    liste.innerHTML = ''; // Efface le contenu actuel de la table
-
     // Parcourt la Map des prêts
     prets.forEach(function (pret, pretId) {
       let row = liste.insertRow();
@@ -15,11 +22,11 @@ function afficherListePrets() {
 
       cellId.innerHTML = pretId;
       cellCodeExemplaire.innerHTML = pret.codeExemplaire;
-      cellNumeroAdherent.innerHTML = pret.numeroAdherent;
+      cellNumeroAdherent.innerHTML = pret.numeroAdh;
 
       // Ajoutez le nom et le prénom de l'adhérent si disponible
-      if (adherents.has(pret.numeroAdherent)) {
-        let adherent = adherents.get(pret.numeroAdherent);
+      if (adherents.has(pret.numeroAdh)) {
+        let adherent = adherents.get(pret.numeroAdh);
         cellNom.innerHTML = adherent.nom;
         cellPrenom.innerHTML = adherent.prenom;
       } else {

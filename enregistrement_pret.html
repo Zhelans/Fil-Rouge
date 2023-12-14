@@ -54,23 +54,26 @@
     
     <div id="formPret">
         <h1>Enregistrer un prêt</h1>
-        <form action="#" method="get" id="form">
+        <form action="./liste_pret.html" method="get" id="form">
             <label for="idAdherent">Numéro de l'adhérent</label>
             <input type="text" name="numAdherent" id="idAdherent" required="required" placeholder="Exemple : 1">
-            <span id="msgNumAdh"></span>
-            <br><br>
-            <label for="idCodeExemplaire">Code exemplaire</label>
-            <input type="text" name="codeExemplaire" id="idCodeExemplaire" required="required" placeholder="Exemple : C1">
             <br>
+            <span id="msgNumAdh"></span>
+            <br>
+            <label for="idCodeExemplaire">Code exemplaire</label>
+            <input type="text" name="codeExemplaire" id="idCodeExemplaire" required="required" placeholder="Exemple : 1">
+            <br>
+            <span id="msgCodeExp"></span>
             <div class="btnPret">
                 <input type="submit" value="Valider" id="btnPret">
                 <input type="reset" value="Annuler" id="btnPretReset">
             </div>
         </form>
     </div>
-    <script src="./data/albums.js"></script>
-    <script src="./data/auteurs.js"></script>
-    <script src="./data/series.js"></script>
+    <script src="./Javascript/exemplaire.js"></script>
+    <script src="./Javascript/albums.js"></script>
+    <script src="./Javascript/auteurs.js"></script>
+    <script src="./Javascript/series.js"></script>
     <script src="./Javascript/adherents.js"></script>
     <script src="./Javascript/prets.js"></script>
     <script src="./Javascript/controle_champ_prets.js"></script>

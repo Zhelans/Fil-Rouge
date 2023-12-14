@@ -18,14 +18,14 @@ numAdh.addEventListener('blur', controleNumAdh);
 
 codeExp.addEventListener('blur', controleCodeExp);
 
-submitBtn.addEventListener('click', subClique) 
+submitBtn.addEventListener('click',subClique) 
 
-    let pretsStored = localStorage.getItem('prets');
-    if (pretsStored) {
-        prets = new Map(JSON.parse(pretsStored));
-    } else {
-        prets = new Map();
-    }
+let pretsStored = localStorage.getItem('prets');
+if (pretsStored) {
+    prets = new Map(JSON.parse(pretsStored));
+} else {
+    prets = new Map();
+}
 
 
 
@@ -47,6 +47,7 @@ function controleNumAdh(e) {
 function controleCodeExp(e) {
 
     let estValide = codeExpReg.test(codeExp.value);
+    
     if (estValide && exemplaires.has(codeExp.value)) {
         let expInfo = exemplaires.get(codeExp.value);
 
@@ -57,13 +58,11 @@ function controleCodeExp(e) {
         } else {
             codeExp.setAttribute('class', 'invalid');
             msgExemplaire.innerHTML = 'Numéro d\'exemplaire épuisé.';
-            e.preventDefault();
             return false;
         }
     } else {
         codeExp.setAttribute('class', 'invalid');
         msgExemplaire.innerHTML = 'Numéro d\'exemplaire non trouvé. Veuillez vérifier le numéro et réessayer.';
-        e.preventDefault();
         return false;
     }
 }
@@ -79,7 +78,6 @@ function subClique(e) {
         let pretId = generateUniqueId();
         prets.set(pretId, { numeroAdh: numAdh.value, codeExemplaire: codeExp.value });
         
-
         localStorage.setItem('prets', JSON.stringify([...prets]));
         console.log(prets)
     } else {

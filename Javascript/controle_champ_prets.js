@@ -1,4 +1,4 @@
-var adhReg = /^[0-9]{1,}$/
+var adhReg = /^[0-9]{11,}$/
 
 var codeExpReg = /^[0-9]{1,}$/
 
@@ -31,7 +31,16 @@ if (pretsStored) {
 
 function controleNumAdh(e) {
     let estValide = adhReg.test(numAdh.value);
-    if (estValide && adherents.has(numAdh.value)) {
+    let numeroAdherentExists = false;
+
+    for (let adherent of adherents.values()) {
+        if (adherent.numeroAdherent === numAdh.value) {
+            numeroAdherentExists = true;
+            break;
+        }
+    }
+
+    if (estValide && numeroAdherentExists) {
         numAdh.setAttribute('class', 'valid');
         msgAdh.innerHTML = 'Numéro d\'adhérent trouvé !';
         return true;
@@ -39,9 +48,8 @@ function controleNumAdh(e) {
         numAdh.setAttribute('class', 'invalid');
         msgAdh.innerHTML = 'Numéro d\'adhérent non valide. Veuillez vérifier le numéro et réessayer.';
         return false;
-        }
-        
     }
+}
 
 
 function controleCodeExp(e) {

@@ -25,13 +25,21 @@ function afficherListePrets() {
       cellNumeroAdherent.innerHTML = pret.numeroAdh;
 
       // Ajoutez le nom et le prénom de l'adhérent si disponible
-      if (adherents.has(pret.numeroAdh)) {
-        let adherent = adherents.get(pret.numeroAdh);
-        cellNom.innerHTML = adherent.nom;
-        cellPrenom.innerHTML = adherent.prenom;
+      let adherentTrouve = null;
+
+      for (let adherent of adherents.values()) {
+          if (adherent.numeroAdherent === pret.numeroAdh) {
+              adherentTrouve = adherent;
+              break;
+          }
+      }
+      
+      if (adherentTrouve) {
+          cellNom.innerHTML = adherentTrouve.nom;
+          cellPrenom.innerHTML = adherentTrouve.prenom;
       } else {
-        cellNom.innerHTML = 'N/A';
-        cellPrenom.innerHTML = 'N/A';
+          cellNom.innerHTML = 'N/A';
+          cellPrenom.innerHTML = 'N/A';
       }
     });
   }

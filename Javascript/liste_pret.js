@@ -1,12 +1,21 @@
 var liste = document.getElementById('liste');
 
+var retour = document.getElementById('retourArriere')
 
-    let pretsStored = localStorage.getItem('prets');
-    if (pretsStored) {
-        prets = new Map(JSON.parse(pretsStored));
-    } else {
-        prets = new Map();
-    }
+retour.addEventListener('click', retourPage)
+
+
+let pretsStored = localStorage.getItem('prets');
+if (pretsStored) {
+    prets = new Map(JSON.parse(pretsStored));
+} else {
+    prets = new Map();
+}
+
+let adhPretEnCoursStored = localStorage.getItem('adhPretEnCours');
+if (adhPretEnCoursStored) {
+    adhPretEnCours = new Set(JSON.parse(adhPretEnCoursStored));
+}
 
 
 function afficherListePrets() {
@@ -38,3 +47,7 @@ function afficherListePrets() {
 
   // Appel de la fonction pour afficher la liste des prêts au chargement de la page
   afficherListePrets();
+
+  function retourPage() {
+    window.location.href = 'enregistrement_pret.html';
+}

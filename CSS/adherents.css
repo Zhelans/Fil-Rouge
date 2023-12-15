@@ -21,3 +21,20 @@ thead,tfoot {
     width: 90%;
     margin: auto;
 }
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #da9617; 
+  border-color: #13413e;
+}
+
+.btn-outline-success:focus {
+  color: #fff;
+  background-color: #eba21a; 
+  border-color: #17504c;
+}
+
+button.btn-outline-success:active{
+  color: #fff;
+  background-color: #f5b338 !important; 
+  border-color: #247c76 !important;
+}

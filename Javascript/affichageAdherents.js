@@ -1,13 +1,36 @@
 var listeAdherents = document.getElementById("liste");
+var boutonPrecedent = document.getElementById("boutonPrecedent");
+var boutonSuivant = document.getElementById("boutonSuivant");
+var portionTableau = 0;
 
 
-window.onload = affichageListeAdherents;
+window.onload = function(){affichageListeAdherents(portionTableau)};
+boutonPrecedent.onclick = dixPrecedents;
+boutonSuivant.onclick = dixSuivant;
 
+function dixSuivant() {
+    portionTableau +=10;
+    if (portionTableau > adherents.size){
+        portionTableau -= 10;
+    }
+    console.log(portionTableau);
+    listeAdherents.innerHTML= "";
+    affichageListeAdherents(portionTableau);
+}
+function dixPrecedents() {
+    portionTableau -=10;
+        if (portionTableau < 0){
+            portionTableau = 0;
+        }
+    console.log(portionTableau);
+    listeAdherents.innerHTML= "";
+    affichageListeAdherents(portionTableau);
+}
 
-
-
-function affichageListeAdherents() {
-    for (let valeur of adherents.values()) {
+function affichageListeAdherents(indiceTableau) {
+    let adherentsArray = Array.from(adherents.values());
+    let DixAdherents = adherentsArray.slice(indiceTableau, indiceTableau+10);
+    for (let valeur of DixAdherents) {
         listeAdherents.innerHTML +='<tr>'+
                                         '<td>'+adherentsNumero(valeur)+'</td>'+
                                         '<td>'+adherentsNom(valeur)+'</td>'+
@@ -15,13 +38,12 @@ function affichageListeAdherents() {
                                         '<td>'+adherentsCotisation(valeur)+'</td>'+
                                         '<td>'+adherentsPret(valeur)+'</td>'+
                                         '<td>'+adherentsAmende(valeur)+'</td>'+
-                                    '</tr>' ;
+                                    '</tr>';
     }
 }
 
 function adherentsNom(i) {
     return i.nom;
-
 }
 
 function adherentsPrenom(i) {
@@ -38,9 +60,8 @@ function adherentsCotisation(i) {
     if (dateCotisation > dateAnDernier()) {
         return "Cotise";
     } else {
-        return " Ne cotise pas";
+        return "Ne cotise pas";
     }
-
 }
 
 function adherentsPret(i) {

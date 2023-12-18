@@ -10,6 +10,12 @@ var submitBtn = document.getElementById('btnPret');
 
 var amendeBtn = document.getElementById('btnAmende');
 
+var cotisationBtn = document.getElementById('btnCotisation');
+
+var inscriptionBtn = document.getElementById('btnInscrire');
+
+var resetBtn = document.getElementById('btnPretReset');
+
 var form = document.getElementById('form');
 
 var msgAdh = document.getElementById('msgNumAdh');
@@ -18,9 +24,9 @@ var msgExemplaire = document.getElementById('msgCodeExp');
 
 submitBtn.style.display = 'none';
 amendeBtn.style.display = 'none';
+cotisationBtn.style.display = 'none';
 
-// Je peux me servir d'un set car ce sont des donnnées non ordonnées, il n'y a pas de clé valeur
-var adhPretEnCours = new Set();
+var adhPretEnCours = new Map();
 
 var avancer = document.getElementById('voirListe');
 
@@ -30,9 +36,22 @@ numAdh.addEventListener('blur', controleNumAdh);
 
 codeExp.addEventListener('blur', controleCodeExp);
 
-submitBtn.addEventListener('click',subClique) 
+submitBtn.addEventListener('click',submitClique);
 
-// amendeBtn.addEventListener('click', allerPageAmende)
+resetBtn.addEventListener('click', function() {
+    msgAdh.innerHTML = '';
+    msgExemplaire.innerHTML = '';
+    numAdh.setAttribute('class','');
+    codeExp.setAttribute('class','');
+    inscriptionBtn.style.display = 'flex';
+
+})
+
+// amendeBtn.addEventListener('click', allerPageAmende);
+
+// cotisationBtn.addEventListener('click', allerPageCotisation);
+
+// inscriptionBtn.addEventListener('click', allerPageInscription);
 
 let pretsStored = localStorage.getItem('prets');
 if (pretsStored) {
@@ -42,7 +61,7 @@ if (pretsStored) {
 }
 let adhPretEnCoursStored = localStorage.getItem('adhPretEnCours');
 if (adhPretEnCoursStored) {
-    adhPretEnCours = new Set(JSON.parse(adhPretEnCoursStored));
+    adhPretEnCours = new Map(JSON.parse(adhPretEnCoursStored));
 }
 
 
@@ -51,27 +70,66 @@ function controleNumAdh(e) {
     let adherent = adherents.get(numAdh.value);
 
     if (estValide && adherent) {
-        if (adhPretEnCours.has(numAdh.value)) {
+        if (adhPretEnCours.has(numAdh.value) && adhPretEnCours.get(numAdh.value).length >= 3) {
             numAdh.setAttribute('class', 'invalid');
-            msgAdh.innerHTML = 'Cet adhérent a déjà un prêt en cours.';
+            msgAdh.innerHTML = 'Cet adhérent a atteint le nombre maximum de prêts en cours (3).';
             cacheValider();
             afficheAmende();
+            afficheCotisation();
+            afficheInscription();
         } else if (adherent.amende !== null) {
             numAdh.setAttribute('class', 'invalid');
-            msgAdh.innerHTML = 'Cet adhérent a une amende impayée.';
-            cacheValider();
-            afficheAmende();
+            let dateCotisationAdherent = new Date(adherent.dateCotisation);
+            let dateCotisationExpiree = new Date(dateCotisationAdherent.getFullYear() + 1, dateCotisationAdherent.getMonth(), dateCotisationAdherent.getDate());
+            let dateActuelle = new Date();
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateCotisationExpireeModifier = new Intl.DateTimeFormat('fr-FR', options).format(dateCotisationExpiree);
+
+            // On compare la date actuelle et la date de cotisation + 1 an
+            if (dateActuelle > dateCotisationExpiree) {
+                msgAdh.innerHTML = 'La cotisation de cet adhérent a expiré depuis le : ' + dateCotisationExpireeModifier + ' et cet adhérent a une amende impayée.';
+                afficheAmende();
+                afficheCotisation();
+                afficheInscription();
+            } else {
+                msgAdh.innerHTML = 'Cet adhérent a une amende impayée.';
+                afficheAmende();
+                afficheCotisation();
+                afficheInscription();
+                cacheValider();
+            }
         } else {
-        numAdh.setAttribute('class', 'valid');
-        msgAdh.innerHTML = 'Numéro d\'adhérent trouvé !';
-        cacheValider();
-        afficheAmende();
-        return true; }
-    } else {
+            // Vérification de la cotisation
+            let dateCotisationAdherent = new Date(adherent.dateCotisation);
+            let dateCotisationExpiree = new Date(dateCotisationAdherent.getFullYear() + 1, dateCotisationAdherent.getMonth(), dateCotisationAdherent.getDate());
+            let dateActuelle = new Date();
+
+            // Formatter la date pour changer son écriture
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateCotisationExpireeModifier = new Intl.DateTimeFormat('fr-FR', options).format(dateCotisationExpiree);
+
+            // On compare la date actuelle et la date de cotisation + 1 an
+            if (dateActuelle > dateCotisationExpiree) {
+                numAdh.setAttribute('class', 'invalid');
+                msgAdh.innerHTML = 'La cotisation de cet adhérent a expiré depuis le : ' + dateCotisationExpireeModifier ;
+                afficheAmende();
+                afficheCotisation();
+                afficheInscription();
+            } else {
+                numAdh.setAttribute('class', 'valid');
+                msgAdh.innerHTML = 'Numéro d\'adhérent trouvé : ' + adherent.nom + ' ' +adherent.prenom;
+                cacheValider();
+                afficheAmende();
+                afficheCotisation();
+                afficheInscription();
+                return true; }
+    }} else {
         numAdh.setAttribute('class', 'invalid');
-        msgAdh.innerHTML = 'Numéro d\'adhérent non valide. Veuillez vérifier le numéro et réessayer.';
+        msgAdh.innerHTML = 'Numéro d\'adhérent non valide. Veuillez vérifier le numéro ou inscrire l\'adhérent.';
         cacheValider();
         afficheAmende();
+        afficheCotisation();
+        afficheInscription();
         return false; 
     }
 }
@@ -102,7 +160,7 @@ function controleCodeExp(e) {
     }
 }
 
-function subClique(e) {
+function submitClique(e) {
 
     var numAdhValide = controleNumAdh();
     var codeExpValide = controleCodeExp();
@@ -110,11 +168,18 @@ function subClique(e) {
     if (numAdhValide && codeExpValide) {
         
         // Enregistrez le prêt dans la Map des prêts
-        let pretId = generateUniqueId();
+        let pretId = genererUniqueId();
+
+        if (!adhPretEnCours.has(numAdh.value)) {
+            // Si l'adhérent n'est pas déjà dans la Map, ajoutez-le avec un tableau contenant le premier pretId
+            adhPretEnCours.set(numAdh.value, [pretId]);
+        } else {
+            // Si l'adhérent est déjà dans la Map, ajoutez simplement le pretId au tableau existant
+            adhPretEnCours.get(numAdh.value).push(pretId);
+        }
+
         prets.set(pretId, { numeroAdh: numAdh.value, codeExemplaire: codeExp.value });
 
-        adhPretEnCours.add(numAdh.value);
-        
         localStorage.setItem('prets', JSON.stringify([...prets]));
         localStorage.setItem('adhPretEnCours', JSON.stringify([...adhPretEnCours]));
         console.log(prets)
@@ -125,7 +190,7 @@ function subClique(e) {
     }
 }  
 
-function generateUniqueId() {
+function genererUniqueId() {
       return prets.size + 1;
 }
 
@@ -134,8 +199,16 @@ function avancerPage() {
 }
 
 // function allerPageAmende() {
-//     window.location.href = ''; // A remplir avec la PAGE AMENDE coté adhérent
+//     window.location.href = ''; // A remplir avec la PAGE AMENDE côté adhérent
 // }
+
+// function allerPageCotisation() {
+//     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
+// }
+
+function allerPageInscription() {
+    window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
+}
 
 function cacheValider() {
     if (numAdh.classList.contains('valid') && codeExp.classList.contains('valid')) {
@@ -153,5 +226,36 @@ function afficheAmende() {
         amendeBtn.style.display = 'flex'
     } else {
         amendeBtn.style.display = 'none'
+    }
+}
+
+
+function afficheCotisation() {
+
+    let adherent = adherents.get(numAdh.value);
+    
+
+    if (adherent) {
+        let dateCotisationAdherent = new Date(adherent.dateCotisation);
+        let dateCotisationExpiree = new Date(dateCotisationAdherent.getFullYear() + 1, dateCotisationAdherent.getMonth(), dateCotisationAdherent.getDate());
+        let dateActuelle = new Date();
+
+        if (dateActuelle > dateCotisationExpiree) {
+            cotisationBtn.style.display = 'flex';
+        } else {
+            cotisationBtn.style.display = 'none';
+        }
+    } else {
+        cotisationBtn.style.display = 'none';
+    }
+}
+
+function afficheInscription() {
+
+
+    if (numAdh.classList.contains('valid')) {
+        inscriptionBtn.style.display = 'none';
+    } else {
+        inscriptionBtn.style.display ='flex';
     }
 }

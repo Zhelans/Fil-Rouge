@@ -14,6 +14,8 @@ var cotisationBtn = document.getElementById('btnCotisation');
 
 var inscriptionBtn = document.getElementById('btnInscrire');
 
+var resetBtn = document.getElementById('btnPretReset');
+
 var form = document.getElementById('form');
 
 var msgAdh = document.getElementById('msgNumAdh');
@@ -23,10 +25,8 @@ var msgExemplaire = document.getElementById('msgCodeExp');
 submitBtn.style.display = 'none';
 amendeBtn.style.display = 'none';
 cotisationBtn.style.display = 'none';
-inscriptionBtn.style.display = 'none';
 
-// Je peux me servir d'un set car ce sont des donnnées non ordonnées, il n'y a pas de clé valeur
-var adhPretEnCours = new Set();
+var adhPretEnCours = new Map();
 
 var avancer = document.getElementById('voirListe');
 
@@ -36,7 +36,16 @@ numAdh.addEventListener('blur', controleNumAdh);
 
 codeExp.addEventListener('blur', controleCodeExp);
 
-submitBtn.addEventListener('click',subClique);
+submitBtn.addEventListener('click',submitClique);
+
+resetBtn.addEventListener('click', function() {
+    msgAdh.innerHTML = '';
+    msgExemplaire.innerHTML = '';
+    numAdh.setAttribute('class','');
+    codeExp.setAttribute('class','');
+    inscriptionBtn.style.display = 'flex';
+
+})
 
 // amendeBtn.addEventListener('click', allerPageAmende);
 
@@ -52,7 +61,7 @@ if (pretsStored) {
 }
 let adhPretEnCoursStored = localStorage.getItem('adhPretEnCours');
 if (adhPretEnCoursStored) {
-    adhPretEnCours = new Set(JSON.parse(adhPretEnCoursStored));
+    adhPretEnCours = new Map(JSON.parse(adhPretEnCoursStored));
 }
 
 
@@ -61,9 +70,9 @@ function controleNumAdh(e) {
     let adherent = adherents.get(numAdh.value);
 
     if (estValide && adherent) {
-        if (adhPretEnCours.has(numAdh.value)) {
+        if (adhPretEnCours.has(numAdh.value) && adhPretEnCours.get(numAdh.value).length >= 3) {
             numAdh.setAttribute('class', 'invalid');
-            msgAdh.innerHTML = 'Cet adhérent a déjà un prêt en cours.';
+            msgAdh.innerHTML = 'Cet adhérent a atteint le nombre maximum de prêts en cours (3).';
             cacheValider();
             afficheAmende();
             afficheCotisation();
@@ -108,7 +117,7 @@ function controleNumAdh(e) {
                 afficheInscription();
             } else {
                 numAdh.setAttribute('class', 'valid');
-                msgAdh.innerHTML = 'Numéro d\'adhérent trouvé !';
+                msgAdh.innerHTML = 'Numéro d\'adhérent trouvé : ' + adherent.nom + ' ' +adherent.prenom;
                 cacheValider();
                 afficheAmende();
                 afficheCotisation();
@@ -151,7 +160,7 @@ function controleCodeExp(e) {
     }
 }
 
-function subClique(e) {
+function submitClique(e) {
 
     var numAdhValide = controleNumAdh();
     var codeExpValide = controleCodeExp();
@@ -160,10 +169,17 @@ function subClique(e) {
         
         // Enregistrez le prêt dans la Map des prêts
         let pretId = genererUniqueId();
+
+        if (!adhPretEnCours.has(numAdh.value)) {
+            // Si l'adhérent n'est pas déjà dans la Map, ajoutez-le avec un tableau contenant le premier pretId
+            adhPretEnCours.set(numAdh.value, [pretId]);
+        } else {
+            // Si l'adhérent est déjà dans la Map, ajoutez simplement le pretId au tableau existant
+            adhPretEnCours.get(numAdh.value).push(pretId);
+        }
+
         prets.set(pretId, { numeroAdh: numAdh.value, codeExemplaire: codeExp.value });
 
-        adhPretEnCours.add(numAdh.value);
-        
         localStorage.setItem('prets', JSON.stringify([...prets]));
         localStorage.setItem('adhPretEnCours', JSON.stringify([...adhPretEnCours]));
         console.log(prets)
@@ -236,11 +252,10 @@ function afficheCotisation() {
 
 function afficheInscription() {
 
-    let adherent = adherents.get(numAdh.value);
 
-    if (!adherent) {
-        inscriptionBtn.style.display = 'flex';
+    if (numAdh.classList.contains('valid')) {
+        inscriptionBtn.style.display = 'none';
     } else {
-        inscriptionBtn.style.display ='none';
+        inscriptionBtn.style.display ='flex';
     }
 }

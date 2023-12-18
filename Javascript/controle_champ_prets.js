@@ -12,6 +12,8 @@ var amendeBtn = document.getElementById('btnAmende');
 
 var cotisationBtn = document.getElementById('btnCotisation');
 
+var inscriptionBtn = document.getElementById('btnInscrire');
+
 var form = document.getElementById('form');
 
 var msgAdh = document.getElementById('msgNumAdh');
@@ -21,6 +23,7 @@ var msgExemplaire = document.getElementById('msgCodeExp');
 submitBtn.style.display = 'none';
 amendeBtn.style.display = 'none';
 cotisationBtn.style.display = 'none';
+inscriptionBtn.style.display = 'none';
 
 // Je peux me servir d'un set car ce sont des donnnées non ordonnées, il n'y a pas de clé valeur
 var adhPretEnCours = new Set();
@@ -37,7 +40,9 @@ submitBtn.addEventListener('click',subClique);
 
 // amendeBtn.addEventListener('click', allerPageAmende);
 
-// cotisationBtn.add('click', allerPageCotisation);
+// cotisationBtn.addEventListener('click', allerPageCotisation);
+
+// inscriptionBtn.addEventListener('click', allerPageInscription);
 
 let pretsStored = localStorage.getItem('prets');
 if (pretsStored) {
@@ -62,6 +67,7 @@ function controleNumAdh(e) {
             cacheValider();
             afficheAmende();
             afficheCotisation();
+            afficheInscription();
         } else if (adherent.amende !== null) {
             numAdh.setAttribute('class', 'invalid');
             let dateCotisationAdherent = new Date(adherent.dateCotisation);
@@ -75,13 +81,14 @@ function controleNumAdh(e) {
                 msgAdh.innerHTML = 'La cotisation de cet adhérent a expiré depuis le : ' + dateCotisationExpireeModifier + ' et cet adhérent a une amende impayée.';
                 afficheAmende();
                 afficheCotisation();
+                afficheInscription();
             } else {
                 msgAdh.innerHTML = 'Cet adhérent a une amende impayée.';
                 afficheAmende();
                 afficheCotisation();
+                afficheInscription();
                 cacheValider();
             }
-            
         } else {
             // Vérification de la cotisation
             let dateCotisationAdherent = new Date(adherent.dateCotisation);
@@ -96,21 +103,24 @@ function controleNumAdh(e) {
             if (dateActuelle > dateCotisationExpiree) {
                 numAdh.setAttribute('class', 'invalid');
                 msgAdh.innerHTML = 'La cotisation de cet adhérent a expiré depuis le : ' + dateCotisationExpireeModifier ;
-                afficheAmende()
-                afficheCotisation()
+                afficheAmende();
+                afficheCotisation();
+                afficheInscription();
             } else {
                 numAdh.setAttribute('class', 'valid');
                 msgAdh.innerHTML = 'Numéro d\'adhérent trouvé !';
                 cacheValider();
                 afficheAmende();
                 afficheCotisation();
+                afficheInscription();
                 return true; }
     }} else {
         numAdh.setAttribute('class', 'invalid');
-        msgAdh.innerHTML = 'Numéro d\'adhérent non valide. Veuillez vérifier le numéro et réessayer.';
+        msgAdh.innerHTML = 'Numéro d\'adhérent non valide. Veuillez vérifier le numéro ou inscrire l\'adhérent.';
         cacheValider();
         afficheAmende();
         afficheCotisation();
+        afficheInscription();
         return false; 
     }
 }
@@ -173,12 +183,16 @@ function avancerPage() {
 }
 
 // function allerPageAmende() {
-//     window.location.href = ''; // A remplir avec la PAGE AMENDE coté adhérent
+//     window.location.href = ''; // A remplir avec la PAGE AMENDE côté adhérent
 // }
 
 // function allerPageCotisation() {
-//     window.location.href = ''; // A remplir avec la PAGE COTISATION coté adhérent
+//     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
 // }
+
+function allerPageInscription() {
+    window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
+}
 
 function cacheValider() {
     if (numAdh.classList.contains('valid') && codeExp.classList.contains('valid')) {
@@ -203,13 +217,30 @@ function afficheAmende() {
 function afficheCotisation() {
 
     let adherent = adherents.get(numAdh.value);
-    let dateCotisationAdherent = new Date(adherent.dateCotisation);
-    let dateCotisationExpiree = new Date(dateCotisationAdherent.getFullYear() + 1, dateCotisationAdherent.getMonth(), dateCotisationAdherent.getDate());
-    let dateActuelle = new Date();
+    
 
-    if (adherent && (dateActuelle > dateCotisationExpiree)) {
-        cotisationBtn.style.display = 'flex';
+    if (adherent) {
+        let dateCotisationAdherent = new Date(adherent.dateCotisation);
+        let dateCotisationExpiree = new Date(dateCotisationAdherent.getFullYear() + 1, dateCotisationAdherent.getMonth(), dateCotisationAdherent.getDate());
+        let dateActuelle = new Date();
+
+        if (dateActuelle > dateCotisationExpiree) {
+            cotisationBtn.style.display = 'flex';
+        } else {
+            cotisationBtn.style.display = 'none';
+        }
     } else {
         cotisationBtn.style.display = 'none';
+    }
+}
+
+function afficheInscription() {
+
+    let adherent = adherents.get(numAdh.value);
+
+    if (!adherent) {
+        inscriptionBtn.style.display = 'flex';
+    } else {
+        inscriptionBtn.style.display ='none';
     }
 }

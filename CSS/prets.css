@@ -100,7 +100,7 @@ label {
     background-color: #4CAF50;
     color: white;
 }
-
+/* Bouton pour revenir sur  la page enregistrement des prets */
 #retourArriere {
     background-color: rgb(241,234,219);
     margin-left: 50px;
@@ -109,6 +109,7 @@ label {
     border-color: #E3E3E3;
 }
 
+/* Bouton pour changer de page vers la liste des prets */
 #voirListe {
     background-color: rgb(241,234,219);
     margin-left: 50px;

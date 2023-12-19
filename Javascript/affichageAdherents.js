@@ -1,10 +1,14 @@
 var listeAdherents = document.getElementById("liste");
 var boutonPrecedent = document.getElementById("boutonPrecedent");
 var boutonSuivant = document.getElementById("boutonSuivant");
+
+
 var portionTableau = 0;
 
 
 window.onload = function(){affichageListeAdherents(portionTableau)};
+
+
 boutonPrecedent.onclick = dixPrecedents;
 boutonSuivant.onclick = dixSuivant;
 
@@ -29,15 +33,15 @@ function dixPrecedents() {
 
 function affichageListeAdherents(indiceTableau) {
     let adherentsArray = Array.from(adherents.values());
-    let DixAdherents = adherentsArray.slice(indiceTableau, indiceTableau+10);
-    for (let valeur of DixAdherents) {
-        listeAdherents.innerHTML +='<tr>'+
-                                        '<td>'+adherentsNumero(valeur)+'</td>'+
-                                        '<td>'+adherentsNom(valeur)+'</td>'+
-                                        '<td>'+adherentsPrenom(valeur)+'</td>'+
-                                        '<td>'+adherentsCotisation(valeur)+'</td>'+
-                                        '<td>'+adherentsPret(valeur)+'</td>'+
-                                        '<td>'+adherentsAmende(valeur)+'</td>'+
+    let dixAdherents = adherentsArray.slice(indiceTableau, indiceTableau+10);
+    for (let valeur of dixAdherents) {
+        listeAdherents.innerHTML +='<tr class="row-cols-auto">'+
+                                        '<td class="col-1">'+adherentsNumero(valeur)+'</td>'+
+                                        '<td class="col">'+adherentsNom(valeur)+'</td>'+
+                                        '<td class="col d-none d-sm-table-cell">'+adherentsPrenom(valeur)+'</td>'+
+                                        '<td class="col-1">'+adherentsCotisation(valeur)+'</td>'+
+                                        '<td class="col-1">'+adherentsPret(valeur)+'</td>'+
+                                        '<td class="col-1">'+adherentsAmende(valeur)+'</td>'+
                                     '</tr>';
     }
 }
@@ -58,15 +62,15 @@ function adherentsNumero(i) {
 function adherentsCotisation(i) {
     let dateCotisation = new Date(i.dateCotisation);
     if (dateCotisation > dateAnDernier()) {
-        return "Cotise";
+        return "O";
     } else {
-        return "Ne cotise pas";
+        return "X";
     }
 }
 
 function adherentsPret(i) {
     if (i.pret == null){
-        return "Aucun Prêt";
+        return "X";
     } else {
         return i.pret;
     }
@@ -74,7 +78,7 @@ function adherentsPret(i) {
 
 function adherentsAmende(i) {
     if (i.amende == null){
-        return "Aucune amende";
+        return "X";
     } else {
         return i.amende;
     }

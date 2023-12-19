@@ -1,26 +1,29 @@
 h1 {
     text-shadow: 3px 2px 4px #0e3936;
+    
 }
-#teteTable th{
+
+
+tr{
+
+  height: 1px; 
   border: 1px solid #ffffff;
   padding: 10px;
   text-align: center;
   vertical-align: middle;
+  font-size: 1.25vh;
 }
 td{
-    border: 1px solid #000000;
-    padding: 10px;
+    border-bottom: 1px solid #000000;
     text-align: center;
     vertical-align: middle;
+    font-size: 1.25vh;
   }
 thead,tfoot {
   background-color: #333;
   color: #fff;
 }
-#table{
-    width: 90%;
-    margin: auto;
-}
+
 .btn-outline-success:hover {
   color: #fff;
   background-color: #da9617; 
@@ -37,4 +40,7 @@ button.btn-outline-success:active{
   color: #fff;
   background-color: #f5b338 !important; 
   border-color: #247c76 !important;
+}
+#boutonsListe{
+  margin-right: -1em;
 }

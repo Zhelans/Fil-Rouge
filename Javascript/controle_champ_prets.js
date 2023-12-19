@@ -206,9 +206,9 @@ function avancerPage() {
 //     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
 // }
 
-function allerPageInscription() {
-    window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
-}
+// function allerPageInscription() {
+//     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
+// }
 
 function cacheValider() {
     if (numAdh.classList.contains('valid') && codeExp.classList.contains('valid')) {

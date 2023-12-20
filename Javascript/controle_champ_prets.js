@@ -54,11 +54,11 @@ resetBtn.addEventListener('click', function() { // J'attribue des évènements a
 
 })
 
-// amendeBtn.addEventListener('click', allerPageAmende);
+amendeBtn.addEventListener('click', allerPageAmende);
 
-// cotisationBtn.addEventListener('click', allerPageCotisation);
+cotisationBtn.addEventListener('click', allerPageCotisation);
 
-// inscriptionBtn.addEventListener('click', allerPageInscription);
+inscriptionBtn.addEventListener('click', allerPageInscription);
 
 // Je stocke la clé prets du localStorage dans une variable
 let pretsStored = localStorage.getItem('prets');
@@ -212,17 +212,17 @@ function avancerPage() {
     window.location.href = 'liste_pret.html';
 }
 
-// function allerPageAmende() {
-//     window.location.href = ''; // A remplir avec la PAGE AMENDE côté adhérent
-// }
+function allerPageAmende() {
+    window.location.href = 'liste_adherents.html'; // Envoie vers la page adhérents
+}
 
-// function allerPageCotisation() {
-//     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
-// }
+function allerPageCotisation() {
+    window.location.href = 'liste_adherents.html'; 
+}
 
-// function allerPageInscription() {
-//     window.location.href = ''; // A remplir avec la PAGE COTISATION côté adhérent
-// }
+function allerPageInscription() {
+    window.location.href = 'liste_adherents.html'; 
+}
 
 
 // Fonction pour cacher le bouton Valider(submit) quand les 2 champs sont incorrect et l'afficher quand les 2 champs sont valides

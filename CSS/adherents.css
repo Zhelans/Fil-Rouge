@@ -18,7 +18,8 @@ td{
     text-align: center;
     vertical-align: middle;
     font-size: 1.25vh;
-  }
+}
+
 thead,tfoot {
   background-color: #333;
   color: #fff;

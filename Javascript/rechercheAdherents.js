@@ -9,17 +9,20 @@ var regex = /[!@#$%^&*()[\]=,.;?":{}|<>]/g
 barreRechercheAdherent.oninput= function (){
     regex.lastIndex = 0;
     if  (regex.test(barreRechercheAdherent.value)==false){
-        toggleBoutons()
+        toggleBoutons();
         messageErreurRecherche.className = "d-none";
         rechercheAdherent();
     } else {
+        disableBoutons();
         messageErreurRecherche.className = "text-danger";
     }
 }
 
-
 boutonPrecedentRecherche.onclick = dixPrecedentsRecherche;
 boutonSuivantRecherche.onclick = dixSuivantsRecherche;
+
+
+
 
 function dixSuivantsRecherche() {
     portionTableau +=10;
@@ -72,12 +75,18 @@ function affichageResultatRecherche(tableauRecherche) {
 
 function toggleBoutons() {
 
-    if (barreRechercheAdherent.value != "" && boutonsRecherche.classList.contains("d-none")){
-        boutonsListe.classList.toggle("d-none");
-        boutonsRecherche.classList.toggle("d-none");
-    } else if (barreRechercheAdherent.value == "") {
-        boutonsListe.classList.toggle("d-none");
-        boutonsRecherche.classList.toggle("d-none");
+    if (barreRechercheAdherent.value != ""){
+        boutonsListe.classList.add("d-none");
+        boutonsRecherche.classList.remove("d-none");
+    } else {
+        console.log("poloppo");
+        boutonsListe.classList.remove("d-none");
+        boutonsRecherche.classList.add("d-none");
     }
+}
 
+function disableBoutons() {
+    console.log("disabled");
+    boutonsListe.classList.remove("d-none");
+    boutonsRecherche.classList.add("d-none");
 }

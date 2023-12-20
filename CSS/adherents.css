@@ -3,9 +3,7 @@ h1 {
     
 }
 
-
 tr{
-
   height: 1px; 
   border: 1px solid #ffffff;
   padding: 10px;
@@ -13,6 +11,7 @@ tr{
   vertical-align: middle;
   font-size: 1.25vh;
 }
+
 td{
     border-bottom: 1px solid #000000;
     text-align: center;
@@ -31,8 +30,6 @@ thead,tfoot {
   border-color: #13413e;
 }
 
-
-
 button.btn-outline-success:active{
   color: #fff;
   background-color: #bd7f0c !important; 
@@ -44,7 +41,6 @@ button.btn-outline-success:active{
   background-color: #2ca7a0 !important; 
   border-color: #aa7617 !important;
 }
-
 
 #boutonPrecedentRecherche:hover,#boutonSuivantRecherche:hover{
   color: #fff;

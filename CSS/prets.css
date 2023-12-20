@@ -19,6 +19,7 @@ label {
     width: 20%;
     margin-top: 50px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 [type="text"] {
@@ -57,7 +58,7 @@ label {
 .btnPret {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 70px;
     padding-bottom: 30px;
 }
 
@@ -81,7 +82,7 @@ label {
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
-    margin-top: 100px;
+    margin-top: 70px;
     padding-top: 30px;
 }
 
@@ -100,7 +101,7 @@ label {
     background-color: #4CAF50;
     color: white;
 }
-
+/* Bouton pour revenir sur  la page enregistrement des prets */
 #retourArriere {
     background-color: rgb(241,234,219);
     margin-left: 50px;
@@ -109,6 +110,7 @@ label {
     border-color: #E3E3E3;
 }
 
+/* Bouton pour changer de page vers la liste des prets */
 #voirListe {
     background-color: rgb(241,234,219);
     margin-left: 50px;
@@ -116,3 +118,95 @@ label {
     padding: 5px 50px;
     border-color: #E3E3E3;
 }
+
+/* MediaQueries pour la page enregistrement des prets */
+
+@media screen and (max-width: 1111px) {
+    label {
+        display: inline-block;
+        width: 200px;
+    }
+
+    .btnPret {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .btnPret input {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    label {
+        width: 100%;
+    }
+
+    [type="text"] {
+        margin-bottom: 10px;
+    }
+
+    .btnPret {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .btnPret input {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    #voirListe {
+        width: 70%;
+        margin-right: 15%;
+        margin-left: 15%;
+        padding: 15 50px;
+    }
+
+    nav {
+        width: 100%;
+    }
+}
+
+
+
+/* MediaQueries pour la page liste des prets */
+
+@media screen and (max-width: 624px) {
+
+    #retourArriere  {
+        width: 70%;
+        margin-right: 15%;
+        margin-left: 15%;
+        padding: 15px 50px;
+    }
+    
+    #listePret  {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    
+}
+
+@media screen and (max-width: 500px) {
+
+    .nom,
+    .prenom,
+    #liste td:nth-last-child(1),
+    #liste td:nth-last-child(2)
+    {
+        display: none;
+    }
+}
+

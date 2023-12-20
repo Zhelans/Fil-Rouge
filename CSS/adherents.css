@@ -30,17 +30,36 @@ thead,tfoot {
   border-color: #13413e;
 }
 
-.btn-outline-success:focus {
-  color: #fff;
-  background-color: #eba21a; 
-  border-color: #17504c;
-}
+
 
 button.btn-outline-success:active{
   color: #fff;
-  background-color: #f5b338 !important; 
-  border-color: #247c76 !important;
+  background-color: #bd7f0c !important; 
+  border-color: #247a75 !important;
 }
+
+#boutonPrecedentRecherche,#boutonSuivantRecherche{
+  color: #fff;
+  background-color: #2ca7a0 !important; 
+  border-color: #aa7617 !important;
+}
+
+
+#boutonPrecedentRecherche:hover,#boutonSuivantRecherche:hover{
+  color: #fff;
+  background-color: #1e6661 !important; 
+  border-color: #da9617 !important;
+}
+
+#boutonPrecedentRecherche:active,#boutonSuivantRecherche:active{
+  color: #fff;
+  background-color: #247a75 !important; 
+  border-color: #bd7f0c !important;
+}
+
 #boutonsListe{
+  margin-right: -1em;
+}
+#boutonsRecherche{
   margin-right: -1em;
 }

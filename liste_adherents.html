@@ -64,9 +64,14 @@
                     <input id="barreRechercheAdherent" type="text" class="form-control" placeholder="n°/nom adhérent" />
                 </div>
 
-                <div id="boutonsListe" class="row text-center justify-content-between justify-content-md-start ms-0 me   col-xl-3 col-md-6 col-12">
+                <div id="boutonsListe" class="row text-center justify-content-between justify-content-md-start ms-0 me col-xl-3 col-md-6 col-12">
                     <button id="boutonPrecedent" class="ms-0 col-5 col-md-auto   btn-outline-success btn  bg-opacity-75">Précédent</button>
                     <button id="boutonSuivant" class=" ms-1 me-0 col-5  col-md-auto  btn-outline-success btn bg-opacity-75">Suivant</button>
+                </div>
+
+                <div id="boutonsRecherche" class="row text-center justify-content-between justify-content-md-start ms-0 me col-xl-3 col-md-6 col-12 d-none">
+                    <button id="boutonPrecedentRecherche" class="ms-0 col-5 col-md-auto   btn-outline-success   btn  bg-opacity-75">Précédent</button>
+                    <button id="boutonSuivantRecherche" class=" ms-1 me-0 col-5  col-md-auto  btn-outline-success  btn bg-opacity-75">Suivant</button>
                 </div>
             
             </div>
@@ -84,8 +89,8 @@
                 </thead>
                 <tbody id="liste">                
                 </tbody>
-                
             </table>
+            <p id="messageErreurRecherche" class=" d-none text-danger">Votre saisie ne doit pas comporter de caractère spécial.</p>
             
         </div>
 

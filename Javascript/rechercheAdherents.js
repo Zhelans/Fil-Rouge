@@ -1,26 +1,62 @@
-var barreRechercheAdherent= document.getElementById("barreRechercheAdherent");
+var barreRechercheAdherent = document.getElementById("barreRechercheAdherent");
+var boutonPrecedentRecherche = document.getElementById("boutonPrecedentRecherche");
+var boutonSuivantRecherche = document.getElementById("boutonSuivantRecherche");
+var messageErreurRecherche = document.getElementById("messageErreurRecherche");
+var resultatRecherche = [];
+
+var regex = /[!@#$%^&*()[\]=,.;?":{}|<>]/g
+
+barreRechercheAdherent.oninput= function (){
+    regex.lastIndex = 0;
+    if  (regex.test(barreRechercheAdherent.value)==false){
+        toggleBoutons()
+        messageErreurRecherche.className = "d-none";
+        rechercheAdherent();
+    } else {
+        messageErreurRecherche.className = "text-danger";
+    }
+}
 
 
-barreRechercheAdherent.oninput= rechercheAdherent;
+boutonPrecedentRecherche.onclick = dixPrecedentsRecherche;
+boutonSuivantRecherche.onclick = dixSuivantsRecherche;
 
+function dixSuivantsRecherche() {
+    portionTableau +=10;
+    if (portionTableau > resultatRecherche.length){
+        portionTableau -= 10;
+    }
+    console.log(resultatRecherche);
+    listeAdherents.innerHTML= "";
+    affichageResultatRecherche(resultatRecherche);
+}
+function dixPrecedentsRecherche() {
+    portionTableau -=10;
+        if (portionTableau < 0){
+            portionTableau = 0;
+        }
+    console.log(resultatRecherche);
+    listeAdherents.innerHTML= "";
+    affichageResultatRecherche(resultatRecherche);
+}
 
 function rechercheAdherent() {
+    portionTableau = 0;
     listeAdherents.innerHTML="";
-    let saisieRecherche = this.value.toLowerCase();
-    let resultatRecherche = [];
+    let saisieRecherche = barreRechercheAdherent.value.toLowerCase();
+    resultatRecherche = [];
     adherents.forEach((value, key) => {
         if (value.nom.toLowerCase().includes(saisieRecherche) || value.numeroAdherent.includes(saisieRecherche)) {
             resultatRecherche.push(value);
         }
     });
     affichageResultatRecherche(resultatRecherche);
-
 }
 
 function affichageResultatRecherche(tableauRecherche) {
 
     let html = "";
-    let dixResultats = tableauRecherche.slice(0, 10);
+    let dixResultats = tableauRecherche.slice(portionTableau, portionTableau+10);
     for (let valeur of dixResultats) {
         html += '<tr class="row-cols-auto">'+
                     '<td class="col-1">'+adherentsNumero(valeur)+'</td>'+
@@ -32,5 +68,16 @@ function affichageResultatRecherche(tableauRecherche) {
                 '</tr>';
     }
     listeAdherents.innerHTML = html;
+}
+
+function toggleBoutons() {
+
+    if (barreRechercheAdherent.value != "" && boutonsRecherche.classList.contains("d-none")){
+        boutonsListe.classList.toggle("d-none");
+        boutonsRecherche.classList.toggle("d-none");
+    } else if (barreRechercheAdherent.value == "") {
+        boutonsListe.classList.toggle("d-none");
+        boutonsRecherche.classList.toggle("d-none");
+    }
 
 }

@@ -1,8 +1,14 @@
 h1 {
     text-shadow: 3px 2px 4px #0e3936;
-    
 }
 
+  input[type="text"] {
+    width: 100%;
+}
+
+#detailAdherent{
+  width: 90%;
+}
 tr{
   height: 1px; 
   border: 1px solid #ffffff;

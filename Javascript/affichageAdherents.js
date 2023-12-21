@@ -65,7 +65,7 @@ function affichageListeAdherents(indiceTableau) {
     let dixAdherents = adherentsArray.slice(indiceTableau, indiceTableau+10);
     //boucle qui rempli la liste en concaténant chaque étage.
     for (let valeur of dixAdherents) {
-        listeAdherents.innerHTML +='<tr class="row-cols-auto">'+
+        listeAdherents.innerHTML +='<tr id="'+adherentsNumero(valeur)+'" class="row-cols-auto" onclick="afficherDetailAdherent(adherents.get(this.id))">'+
                                         '<td class="col-1">'+adherentsNumero(valeur)+'</td>'+
                                         '<td class="col">'+adherentsNom(valeur)+'</td>'+
                                         '<td class="col d-none d-sm-table-cell">'+adherentsPrenom(valeur)+'</td>'+
@@ -82,6 +82,7 @@ function affichageListeAdherents(indiceTableau) {
  * @returns retourne nom de l'adhérent de la clé valeur en paramètre
  */
 function adherentsNom(i) {
+    console.log(i); 
     return i.nom;
 }
 

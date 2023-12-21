@@ -1,7 +1,7 @@
     // Recuperation du HTML
-    var triAut = getElementById ('triAuteur');
-    var triSer = getElementById ('triSerie');
-    var barreRecherche = getElementById ('rechercheBarre');
+    var triAut = document.getElementById ('triAuteur');
+    var triSer = document.getElementById ('triSerie');
+    var barreRecherche = document.getElementById ('rechercheBarre');
     var carte = document.querySelectorAll('.card');
     const tabCartes = [];
 
@@ -9,11 +9,12 @@
     // Ajouter chaque carte au tableau
     carte.forEach(card => {
         tabCartes.push(card);
+// console.log(tabCartes)
     });
 
 
     // Tri par auteur(s)
-    if (triAut === checked) {
+    if (triAut.checked) {
     
         // Trier les cartes en fonction du titre
         tabCartes.sort((a, b) => {

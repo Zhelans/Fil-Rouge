@@ -18,7 +18,7 @@ if (localStorage.getItem('adherents')) {
 }
 
 boutonModifier.onclick = enableModif;
-boutonConfirmer.onclick = confirm;
+
 boutonRetour.onclick = function(){location.reload()};
 
 function afficherDetailAdherent(adherent) {
@@ -42,9 +42,11 @@ function modifH1(adherent) {
 }
 
 function enableModif() {
+    
     let inputs = document.querySelectorAll('#adherentForm input');
     boutonModifier.classList.add("d-none");
     boutonConfirmer.classList.remove("d-none");
+    boutonConfirmer.onclick = confirm;
     for (let input of inputs) {
         input.disabled = false;
     }

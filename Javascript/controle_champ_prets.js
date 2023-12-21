@@ -51,7 +51,6 @@ resetBtn.addEventListener('click', function() { // J'attribue des évènements a
     numAdh.setAttribute('class','');
     codeExp.setAttribute('class','');
     inscriptionBtn.style.display = 'flex';
-
 })
 
 amendeBtn.addEventListener('click', allerPageAmende);

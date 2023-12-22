@@ -1,12 +1,16 @@
 /* Mise en forme de la page enregistrement des prêts */
 
+body {
+    background-color: #E3E3E3;
+}
+
 #formPret {
     text-align: center;
-    background-color: whitesmoke;
+    background-color: rgb(241,234,219);
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
-    margin-top: 100px;
+    margin-top: 70px;
     padding-top: 30px;
 }
 
@@ -14,6 +18,8 @@ label {
     display: inline-block;
     width: 20%;
     margin-top: 50px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 [type="text"] {
@@ -36,7 +42,14 @@ label {
     padding: 10px 50px;
 }
 
-[type="submit"]:hover,[type="reset"]:hover {
+[type="button"] {
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px 50px;
+}
+
+[type="submit"]:hover,[type="reset"]:hover,[type="button"]:hover  {
     box-shadow: 0px 1px black;
     transform: scale(1.1);
     transition-timing-function: ease-in-out;
@@ -45,10 +58,12 @@ label {
 .btnPret {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
-    margin-right: 50px;
+    margin-top: 70px;
     padding-bottom: 30px;
-    
+}
+
+.btnPret input {
+    margin-right: 10px;
 }
 
 .valid {
@@ -63,11 +78,11 @@ label {
 
 #listePret {
     text-align: center;
-    background-color: whitesmoke;
+    background-color: rgb(241,234,219);
     width: 70%;
     margin-right: 15%;
     margin-left: 15%;
-    margin-top: 100px;
+    margin-top: 70px;
     padding-top: 30px;
 }
 
@@ -86,3 +101,112 @@ label {
     background-color: #4CAF50;
     color: white;
 }
+/* Bouton pour revenir sur  la page enregistrement des prets */
+#retourArriere {
+    background-color: rgb(241,234,219);
+    margin-left: 50px;
+    margin-top: 30px;
+    padding: 5px 50px;
+    border-color: #E3E3E3;
+}
+
+/* Bouton pour changer de page vers la liste des prets */
+#voirListe {
+    background-color: rgb(241,234,219);
+    margin-left: 50px;
+    margin-top: 30px;
+    padding: 5px 50px;
+    border-color: #E3E3E3;
+}
+
+/* MediaQueries pour la page enregistrement des prets */
+
+@media screen and (max-width: 1111px) {
+    label {
+        display: inline-block;
+        width: 200px;
+    }
+
+    .btnPret {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .btnPret input {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    label {
+        width: 100%;
+    }
+
+    [type="text"] {
+        margin-bottom: 10px;
+    }
+
+    .btnPret {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .btnPret input {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    #voirListe {
+        width: 70%;
+        margin-right: 15%;
+        margin-left: 15%;
+        padding: 15 50px;
+    }
+
+    nav {
+        width: 100%;
+    }
+}
+
+
+
+/* MediaQueries pour la page liste des prets */
+
+@media screen and (max-width: 624px) {
+
+    #retourArriere  {
+        width: 70%;
+        margin-right: 15%;
+        margin-left: 15%;
+        padding: 15px 50px;
+    }
+    
+    #listePret  {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    
+}
+
+@media screen and (max-width: 500px) {
+
+    .nom,
+    .prenom,
+    #liste td:nth-last-child(1),
+    #liste td:nth-last-child(2)
+    {
+        display: none;
+    }
+}
+

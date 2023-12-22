@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+                rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+                crossorigin="anonymous">
+        <link rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />        
+        <link rel="stylesheet" href="./CSS/recherche_BD.css">
+        <title>Recherche de BD</title>
+    </head>
+    <body>
+
+        <!-- Header et menu nav -->
+        <header>
+            <div id="header-top"  class="row justify-content-around">
+
+                <img src="Header/logo_marmusots.png" id="img_header" class="col-sm-12 col-md-4 img-fluid logo" alt="logo BDtheque les marmusots" />
+
+                <div class="col-sm-12 col-md-4 row align-items-center" id="recherche">
+                    <form action="">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-light">
+                                    <span class="material-symbols-rounded" id="rechercheBarre">search</span>
+                                </button>
+                            </div>
+                            <input type="text" class="col-sm-12 col-md-4 form-control" placeholder="Rechercher une BD" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+            <nav class="navbar navbar-expand-md" id="header-botom">
+                <div class="container">
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu-nav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menu-nav">
+                        <ul class="navbar-nav text-center">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" id="header-botom-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="recherche_BD.html" class="nav-link" id="header-botom-link">BD</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="enregistrement_pret.html" class="nav-link" id="header-botom-link">Enregistrer un prêt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="liste_adherents.html" class="nav-link" id="header-botom-link">Adhérent</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <!-- PAGE DE RECHERCHE -->
+        
+        <!-- Systeme de recherche -->
+        <fieldset>
+            <!-- Type de recherche -->
+            <input type="radio" name="tri" value="Auteur" id="triAuteur" />
+            <label for="Auteur"> Trier par auteur(s) </label>
+            <input type="radio" name="tri" value="Serie" id="triSerie" checked="checked" />
+            <label for="Serie"> Trier par série(s) </label>
+        </fieldset>
+
+        <!-- Liste des cartes -->
+        <div class="card-container">
+
+            <!-- Cartes -->
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="card">
+                    <img src="./ressources/albumsMini/Arkezone-01-Le dôme.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le dome</h5>
+                        <p class="card-text" id="idAuteur">Auteurs:  Lionel Bourjac et Philippe Gadioux </p>
+                        <p class="card-text" id="idSerie">Série: Arkezone</p>
+                        <div>
+                            <p>Tome n°1</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-03-Astérix et les Goths.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix et les Goths</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°3</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-06-Astérix et Cléopatre.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre:  Astérix et Cléopâtre</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°6</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-08-Astérix chez les Bretons.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix chez les Bretons</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°8</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-12-Astérix aux jeux olympiques.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix aux jeux Olympiques</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°12</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-15-La zizanie.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: La zizanie</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°15</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-21-Le cadeau de César.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le cadeau de César</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°21</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-23-Obélix et compagnie.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Obélix et compagnie</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°23</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-24-Astérix chez les belges.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix chez les Belges</h5>
+                        <p class="card-text" id="idAuteur">Auteur: René Goscinny et Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°24</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-31-Astérix et Latraviata.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix et Latraviata</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°31</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-33-Le ciel lui tombe sur la tête.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le ciel lui tombe sur la tête</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Albert Uderzo</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°33</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-35-Astérix chez les Pictes.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Astérix chez les Pictes</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Yves Ferri et Didier Conrad</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°35</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Astérix-36-Astérix, le papyrus de César.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le papyrus de César</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Yves Ferri et Didier Conrad</p>
+                        <p class="card-text" id="idSerie">Série: Astérix</p>
+                        <div>
+                            <p>Tome n°36</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blacksad-01-Quelque part entre les ombres.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Quelque part entre les ombres</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Juan Díaz Canalès et Juanjo Guarnido</p>
+                        <p class="card-text" id="idSerie">Série: Blacksad</p>
+                        <div>
+                            <p>Tome n°1</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blacksad-02-Arctic-Nation.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Arctic-Nation</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Juan Díaz Canalès et Juanjo Guarnido</p>
+                        <p class="card-text" id="idSerie">Série: Blacksad</p>
+                        <div>
+                            <p>Tome n°2</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blacksad-03-Ame rouge.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Âme Rouge</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Juan Díaz Canalès et Juanjo Guarnido</p>
+                        <p class="card-text" id="idSerie">Série: Blacksad</p>
+                        <div>
+                            <p>Tome n°3</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blake et Mortimer-01-Le secret de lespadon Tome 1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le Secret de l'Espadon - Tome I - La Poursuite fantastique</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Edgar Pierre Jacobs</p>
+                        <p class="card-text" id="idSerie">Série: Blake et Mortimer</p>
+                        <div>
+                            <p>Tome n°1</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blake et Mortimer-02-Le secret de lespadon Tome 2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le Secret de l'Espadon - Tome II - L'Évasion de Mortimer</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Edgar Pierre Jacobs</p>
+                        <p class="card-text" id="idSerie">Série: Blake et Mortimer</p>
+                        <div>
+                            <p>Tome n°2</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blake et Mortimer-03-Le secret de lespadon Tome 3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le Secret de l'Espadon - Tome III - SX1 contre-attaque</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Edgar Pierre Jacobs</p>
+                        <p class="card-text" id="idSerie">Série: Blake et Mortimer</p>
+                        <div>
+                            <p>Tome n°3</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blake et Mortimer-06-La marque jaune.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: La Marque jaune</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Edgar Pierre Jacobs</p>
+                        <p class="card-text" id="idSerie">Série: Blake et Mortimer</p>
+                        <div>
+                            <p>Tome n°6</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blake et Mortimer-22-londe septimus.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: L'Onde Septimus</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Jean Dufaux et Aubin, Antoine</p>
+                        <p class="card-text" id="idSerie">Série: Blake et Mortimer</p>
+                        <div>
+                            <p>Tome n°22</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blueberry-01-Fort Navajo.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Fort Navajo</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Jean-Michel Charlier et Jean Giraud</p>
+                        <p class="card-text" id="idSerie">Série: Blueberry</p>
+                        <div>
+                            <p>Tome n°1</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blueberry-02-Lhomme à létoile dargent.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: L'homme à l'étoile d'argent</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Michel Charlier et Jean Giraud</p>
+                        <p class="card-text" id="idSerie">Série: Blueberry</p>
+                        <div>
+                            <p>Tome n°2</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blueberry-03-Le cheval de fer.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le cheval de fer</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Michel Charlier et Jean Giraud</p>
+                        <p class="card-text" id="idSerie">Série: Blueberry</p>
+                        <div>
+                            <p>Tome n°3</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blueberry-04-La mine de lallemand perdu.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: La mine de l'Allemand perdu</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Michel Charlier et Jean Giraud</p>
+                        <p class="card-text" id="idSerie">Série: Blueberry</p>
+                        <div>
+                            <p>Tome n°4</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Blueberry-05-Le spectre aux balles dor.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Le spectre aux balles d'or</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean-Michel Charlier et Jean Giraud</p>
+                        <p class="card-text" id="idSerie">Série: Blueberry</p>
+                        <div>
+                            <p>Tome n°5</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Boule et bill-07-Album 07.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Boule & Bill 7</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Jean Roba</p>
+                        <p class="card-text" id="idSerie">Série: Boule & Bill</p>
+                        <div>
+                            <p>Tome n°7</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Boule et bill-13-Album 13.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: Boule & Bill 13</h5>
+                        <p class="card-text" id="idAuteur">Auteur:  Jean Roba</p>
+                        <p class="card-text" id="idSerie">Série: Boule & Bill</p>
+                        <div>
+                            <p>Tome n°13</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Boule et bill-25-22 vlà.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: 22 ! v'la Boule & Bill !</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean Roba</p>
+                        <p class="card-text" id="idSerie">Série: Boule & Bill</p>
+                        <div>
+                            <p>Tome n°22</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <img src="./ressources/albumsMini/Boule et bill-26-Faut rigoler .jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre: 'Faut Rigoler !</h5>
+                        <p class="card-text" id="idAuteur">Auteur: Jean Roba</p>
+                        <p class="card-text" id="idSerie">Série: Boule & Bill</p>
+                        <div>
+                            <p>Tome n°26</p>
+                            <p>Nombre d'exemplaire: <strong>X</strong></p>
+                        </div>
+                        <p>ISBN: 123-4-5678-9012-3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="./Javascript/auteurs.js"></script>
+        <script src="./Javascript/series.js"></script>
+        <script src="./Javascript/albums.js"></script>
+        <script src="./Javascript/recherche_BD.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+                crossorigin="anonymous"></script>
+    </body>
+</html>

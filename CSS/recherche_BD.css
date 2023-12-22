@@ -16,6 +16,6 @@
 
 /* Barre de defilement pou les cartes */
 .card-container {
-    height: 600px;
+    height: 100%;
     overflow-y: auto;
 }

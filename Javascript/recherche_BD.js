@@ -32,8 +32,8 @@
             var container = document.querySelector('.card-container');
             var cards = Array.from(container.getElementsByClassName('card'));
             cards.sort(function(a, b) {
-                var serieA = a.querySelector('#triSerie').textContent.toUpperCase();
-                var serieB = b.querySelector('#triSerie').textContent.toUpperCase();
+                var serieA = a.querySelector('#idSerie').textContent.toUpperCase();
+                var serieB = b.querySelector('#idSerie').textContent.toUpperCase();
                 if (serieA < serieB) {
                     return -1;
                 }
@@ -52,4 +52,5 @@
                 row.appendChild(card);
             });
         }
+        window.location.reload();
     });

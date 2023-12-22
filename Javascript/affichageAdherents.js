@@ -5,9 +5,17 @@ var boutonSuivant = document.getElementById("boutonSuivant");
 
 //Variable dont la valeur est le point de départ de l'affichage du tableau.
 var portionTableau = 0;
+var adherentsArray = [];
+
+
+if (!localStorage.getItem('adherents')) {
+    var adherentsArray = Array.from(adherents.entries());
+    var adherentsJSON = JSON.stringify(adherentsArray);
+    localStorage.setItem('adherents', adherentsJSON);
+}
 
 //Initialisation de l'affichage
-window.onload = function(){affichageListeAdherents(portionTableau)};
+window.onload = function(){affichageListeAdherents(portionTableau); };
 
 //Evénements
 boutonPrecedent.onclick = dixPrecedents;
@@ -60,12 +68,22 @@ function dixPrecedents() {
  */
 function affichageListeAdherents(indiceTableau) {
     //On copie des valeurs de "adherents.js" dans un tableau.
-    let adherentsArray = Array.from(adherents.values());
+    if (localStorage.getItem('adherents')) {
+        let localStorageArray = JSON.parse(localStorage.getItem('adherents'));
+        adherentsArray = new Map(localStorageArray);
+
+    } else {
+        adherentsArray = adherents;
+
+    }
+
+    let valuesArray = Array.from(adherentsArray.values());
+
     //On ne prend que 10 valeurs à la fois
-    let dixAdherents = adherentsArray.slice(indiceTableau, indiceTableau+10);
+    let dixAdherents = valuesArray.slice(indiceTableau, indiceTableau+10)
     //boucle qui rempli la liste en concaténant chaque étage.
     for (let valeur of dixAdherents) {
-        listeAdherents.innerHTML +='<tr id="'+adherentsNumero(valeur)+'" class="row-cols-auto" onclick="afficherDetailAdherent(adherents.get(this.id))">'+
+        listeAdherents.innerHTML +='<tr id="'+adherentsNumero(valeur)+'" class="row-cols-auto" onclick="afficherDetailAdherent(adherentsArray.get(this.id))">'+
                                         '<td class="col-1">'+adherentsNumero(valeur)+'</td>'+
                                         '<td class="col">'+adherentsNom(valeur)+'</td>'+
                                         '<td class="col d-none d-sm-table-cell">'+adherentsPrenom(valeur)+'</td>'+
@@ -82,7 +100,11 @@ function affichageListeAdherents(indiceTableau) {
  * @returns retourne nom de l'adhérent de la clé valeur en paramètre
  */
 function adherentsNom(i) {
-    console.log(i); 
+    console.log(i.nom);
+    console.log(i.prenom);
+    console.log(i.amende);
+    console.log(i.pret);
+
     return i.nom;
 }
 

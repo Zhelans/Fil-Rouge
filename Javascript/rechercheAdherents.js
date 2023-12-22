@@ -13,6 +13,7 @@ var regex = /[!@#$%^&*()[\]=,.;?":{}|<>]/g
 
 //Dès qu'on tape une chose dans la barre de recherche, ça déclenche une recherche.
 barreRechercheAdherent.oninput= function (){
+    console.log(resultatRecherche);
     //Pour être sûr que le regex teste bien à partir du premier terme de la chaine.
     regex.lastIndex = 0;
     //Si le test est faux, on cherche.
@@ -97,11 +98,21 @@ function rechercheAdherent() {
     listeAdherents.innerHTML="";
     let saisieRecherche = barreRechercheAdherent.value.toLowerCase();
     resultatRecherche = [];
-    adherents.forEach((value, key) => {
+    
+    var sourceAdherents;
+    if (localStorage.getItem('adherents')) {
+        let adherentsArray = JSON.parse(localStorage.getItem('adherents'));
+        sourceAdherents = new Map(adherentsArray);
+    } else {
+        sourceAdherents = adherents;
+    }
+    
+    sourceAdherents.forEach((value, key) => {
         if (value.nom.toLowerCase().includes(saisieRecherche) || value.numeroAdherent.includes(saisieRecherche)) {
             resultatRecherche.push(value);
         }
     });
+    
     affichageResultatRecherche(resultatRecherche);
 }
 
@@ -116,7 +127,7 @@ function affichageResultatRecherche(tableauRecherche) {
     //boucle qui rempli la liste en concaténant chaque étage.
     for (let valeur of dixResultats) {
         //Au lieu de concaténer chaque étage à chaque boucle, on le rajoute à la valeur de "html".
-        html += '<tr class="row-cols-auto" onclick="window.open(\'http://127.0.0.1:5500/liste_adherents.html\')">'+
+        html += '<tr id="'+adherentsNumero(valeur)+'" class="row-cols-auto" onclick="afficherDetailAdherent(adherents.get(this.id))">'+
                     '<td class="col-1">'+adherentsNumero(valeur)+'</td>'+
                     '<td class="col">'+adherentsNom(valeur)+'</td>'+
                     '<td class="col d-none d-sm-table-cell">'+adherentsPrenom(valeur)+'</td>'+

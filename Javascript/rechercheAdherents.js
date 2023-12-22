@@ -92,13 +92,15 @@ function disableBoutons() {
 
 //-----------Fonctions de la recherche-----------//
 
-
+/**
+ * Recherche l'adhérent et produit un tableau de résultat
+ */
 function rechercheAdherent() {
     portionTableau = 0;
     listeAdherents.innerHTML="";
     let saisieRecherche = barreRechercheAdherent.value.toLowerCase();
     resultatRecherche = [];
-    
+    //prend le local storage si il existe.
     var sourceAdherents;
     if (localStorage.getItem('adherents')) {
         let adherentsArray = JSON.parse(localStorage.getItem('adherents'));
@@ -106,13 +108,12 @@ function rechercheAdherent() {
     } else {
         sourceAdherents = adherents;
     }
-    
+    //produit le tableau par le nom ou le numéro.
     sourceAdherents.forEach((value, key) => {
         if (value.nom.toLowerCase().includes(saisieRecherche) || value.numeroAdherent.includes(saisieRecherche)) {
             resultatRecherche.push(value);
         }
     });
-    
     affichageResultatRecherche(resultatRecherche);
 }
 

@@ -55,31 +55,101 @@
             </nav>
         </header>
 
-        <h1 class="text-center bg-success bg-opacity-75 bg-gradient text-white shadow pb-2 pt-1">Liste des Adhérents</h1>
 
-        <table id="table" class="table table-striped table-hover table-responsive ">
-            <thead class="table-dark">
-                <tr id="teteTable">
-                    <th scope="col">Numéro d'adhérent</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">État cotisation</th>
-                    <th scope="col">Prêt en cours</th>
-                    <th scope="col">Amende en cours</th>
-                </tr>
-            </thead>
-            <tbody id="liste">
-                
-            </tbody>
-        </table>
-        
-        <div class="d-flex justify-content-center">
-            <button id="boutonPrecedent" class="btn-outline-success btn m-4 bg-opacity-75">Précédent</button>
-            <button id="boutonSuivant" class="btn-outline-success btn m-4 bg-opacity-75">Suivant</button>
+        <!--titre qui se présente comme une barre sous le header-->
+        <h1 id="titre"class="text-center bg-success bg-opacity-75 bg-gradient text-white shadow pb-2 pt-1">Liste des Adhérents</h1>
+
+<!---------DETAIL ADHERENT------->
+        <div id="detailAdherent" class="container-fluid d-none">
+            <div class="row d-flex justify-content-around">
+                <form class="col-12 col-md-7 col-xl-4 " id="adherentForm">
+                        <label for="numeroAdherent">Numéro adhérent :</label><br>
+                        <input type="text" id="numeroAdherent" name="numeroAdherent" value="" disabled><br>
+                        <label for="nom">Nom :</label><br>
+                        <input type="text" id="nom" name="nom" value="" disabled><br>
+                        <label for="prenom">Prénom :</label><br>
+                        <input type="text" id="prenom" name="prenom" value="" disabled><br>
+                        <label for="adresse">Adresse :</label><br>
+                        <input type="text" id="adresse" name="adresse"  value=""disabled><br>
+                        <label for="telephone">Téléphone :</label><br>
+                        <input type="text" id="telephone" name="telephone" value="" disabled><br>
+                        <label for="dateCotisation">Date dernière cotisation :</label><br>
+                        <input type="text" id="dateCotisation" name="dateCotisation" value="" disabled><br>
+                </form>
+                <div class="col-12 col-md-5 col-xl-4 offset-xl-2 text-center">
+                    <p>Etat cotisation :<br>
+                    <span id="cotisation"></span></p>
+                    <p>Etat prêt :<br>
+                    <span id="pret"></span></p>
+                    <p>Amende :<br>
+                    <span id="amende"></span></p>
+                    <button id="boutonModifier" class="ms-0 col-6 col-md-5 btn-outline-success btn bg-opacity-75">Modifier</button>
+                    <button id="boutonConfirmer" class="ms-0 col-6 col-md-5 btn-outline-success btn bg-opacity-75 d-none">Confirmer</button>
+                    <br>
+                    <button id="boutonCotiser" class="ms-0 mt-2  col-12 col-md-5 btn-outline-success btn bg-opacity-75">Cotisation</button>
+                    <br>
+                    <button id="boutonReglementAmende" class="ms-0 mt-2  col-12 col-md-5 btn-outline-success btn bg-opacity-75">Règlement amende</button>
+                    <br>
+                    <button id="boutonGererPret" class="ms-0 mt-2  col-12 col-md-5 btn-outline-success btn bg-opacity-75">Gérer prêts</button>
+                </div>
+            </div>
+            <button id="boutonRetour" class="mt-5 col-8 mx-auto d-block btn-outline-danger btn bg-opacity-75">Annuler</button>
         </div>
+        
+
+
+
+<!-----FIN DETAIL ADHERENT------->
+<!-------------TABLE------------->
+        <!--Contient toute la table-->
+        <div id="table" class="container containerTable ">  
+            <!--contient boutons et barre de recherche-->          
+            <div class="row containerBarreAdherent my-4 mx-auto">
+                <!--barre de recherche adhérent-->
+                <div class="col-xl-3 col-md-4 col-12 col-auto mb-3 mb-md-0 ">
+                    <input id="barreRechercheAdherent" type="text" class="form-control" placeholder="n°/nom adhérent" />
+                </div>
+                <!--boutons navigation dans la liste entière-->
+                <div id="boutonsListe" class="row text-center justify-content-between justify-content-md-start ms-0 me col-xl-3 col-md-6 col-12">
+                    <button id="boutonPrecedent" class="ms-0 col-5 col-md-auto   btn-outline-success btn  bg-opacity-75">Précédent</button>
+                    <button id="boutonSuivant" class=" ms-1 me-0 col-5  col-md-auto  btn-outline-success btn bg-opacity-75">Suivant</button>
+                </div>
+                <!--boutons navigation dans la liste des résultats de recherche, caché par défaut-->
+                <div id="boutonsRecherche" class="row text-center justify-content-between justify-content-md-start ms-0 me col-xl-3 col-md-6 col-12 d-none">
+                    <button id="boutonPrecedentRecherche" class="ms-0 col-5 col-md-auto   btn-outline-success   btn  bg-opacity-75">Précédent</button>
+                    <button id="boutonSuivantRecherche" class=" ms-1 me-0 col-5  col-md-auto  btn-outline-success  btn bg-opacity-75">Suivant</button>
+                </div>
+                <!--bouton pour créer un utilisateur-->
+                <button id="boutonCreationUtilisateur" class=" me-lg-3  mt-3 mt-lg-0  ms-md-2 col-11 col-md-7 col-lg-auto mx-auto btn-outline-success btn  bg-opacity-75">Créer utilisateur</button>
+            </div>
+            <!--la table-->
+            <table class="table table-striped table-hover table-fixed  ">
+                <!--les titres de la table-->
+                <thead class="table-dark container">
+                    <tr>
+                        <th class="col-1" scope="col">Numéro d'adhérent</th>
+                        <th class="col-4" scope="col">Nom</th>
+                        <th class="col-4 d-none d-sm-table-cell" scope="col">Prénom</th>
+                        <th class="col-1" scope="col">État cotisation</th>
+                        <th class="col-1"scope="col">Prêt en cours</th>
+                        <th class="col-1" scope="col">Amende en cours</th>
+                    </tr>                    
+                </thead>
+                <!--le contenu de la table (se rempli par javascript)-->
+                <tbody id="liste">                
+                </tbody>
+            </table>
+            <!--message d'erreur (caché par défaut)-->
+            <p id="messageErreurRecherche" class=" d-none text-danger">Votre saisie ne doit pas comporter de caractère spécial.</p>
+        </div>
+<!----------FIN TABLE------------>       
+<!------------SCRIPT------------->
 
         <script src="Javascript/adherents.js"></script>
         <script src="Javascript/affichageAdherents.js"></script>
+        <script src="Javascript/rechercheAdherents.js"></script>
+        <script src="Javascript/modifierAdherent.js"></script>
+        <script src="Javascript/creerAdherent.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>

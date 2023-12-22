@@ -99,6 +99,7 @@ function controleNumAdh(e) {
                 afficheAmende();
                 afficheCotisation();
                 afficheInscription();
+                cacheValider();
             } else { // Sinon la date est encore à jour mais il a juste une amende
                 msgAdh.innerHTML = 'Cet adhérent a une amende impayée.';
                 afficheAmende();
@@ -122,6 +123,7 @@ function controleNumAdh(e) {
                 afficheAmende();
                 afficheCotisation();
                 afficheInscription();
+                cacheValider();
             } else { // Sinon l'adhérent remplit tous les bons facteurs et on le retrouve dans la map adhérent
                 numAdh.setAttribute('class', 'valid');
                 msgAdh.innerHTML = 'Numéro d\'adhérent trouvé : ' + adherent.nom + ' ' +adherent.prenom;
